@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blockchain Visualizer</title>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/2.1.6/pusher.min.js"></script>
+    <script src="matter.min.js"></script>
+    <script src="index.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1>BTC Blockchain Visualizer</h1>
+      <h5>Real-time transaction and block data.</h5>
+    </div>
+    <div class="container">
+      <div class="row">
+        <canvas id="canvas" style="margin: 0 auto; background: #222;"></canvas>
+        <canvas id="text-canvas" width=1200 height=1000 style="position: absolute;"></canvas>
+      </div>
+      <div class="row"><h2>Stats</h2></div>
+      <div class="row">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Total Bitcoin sent: <span id="btcsent"></span>
+          </li>
+          <li class="list-group-item">
+            Largest amount of Bitcoin in one transaction:
+            <span id="largestbtcsent"></span>
+          </li>
+          <li class="list-group-item">
+            Smallest amount of Bitcoin in one transaction:
+            <span id="smallestbtcsent"></span><br />
+          </li>
+          <li class="list-group-item">
+            Average amount of Bitcoin sent per second:
+            <span id="avgbtcsent"></span>
+          </li>
+          <li class="list-group-item">
+            Transactions per second: <span id="txpersec"></span>
+          </li>
+          <li class="list-group-item">
+            Transactions not in block: <span id="mempool"></span>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <div id="transactions" class="col">
+          <h2 id="transaction-header">Transactions List</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Amount Sent</th>
+                <th scope="col">Timestamp</th>
+                <th scope="col">Block #</th>
+              </tr>
+            </thead>
+            <tbody id="transactions-list"></tbody>
+          </table>
+        </div>
+        <div id="blocks" class="col">
+          <h2>Blocks</h2>
+          <div id="blocks-list"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
