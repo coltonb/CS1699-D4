@@ -31,12 +31,14 @@
     <div class="jumbotron">
       <h1>BTC Blockchain Visualizer</h1>
       <h5>Real-time transaction and block data.</h5>
+      <p>Each circle represents a single transaction. Transaction IDs are truncated to show the last 8 characters.</p>
     </div>
     <div class="container">
       <div class="row">
         <canvas id="canvas" style="margin: 0 auto; background: #222;"></canvas>
         <canvas id="text-canvas" width=1200 height=1000 style="position: absolute;"></canvas>
       </div>
+      <hr>
       <div class="row"><h2>Stats</h2></div>
       <div class="row">
         <ul class="list-group list-group-flush">
@@ -63,8 +65,9 @@
           </li>
         </ul>
       </div>
+      <hr>
       <div class="row">
-        <div id="transactions" class="col">
+        <div id="transactions" style="height: 600px; overflow-y: scroll;" class="col">
           <h2 id="transaction-header">Transactions List</h2>
           <table class="table">
             <thead>
@@ -78,7 +81,7 @@
             <tbody id="transactions-list"></tbody>
           </table>
         </div>
-        <div id="blocks" class="col">
+        <div id="blocks" style="height: 600px; overflow-y: scroll;" class="col">
           <h2>Blocks</h2>
           <div id="blocks-list"></div>
         </div>

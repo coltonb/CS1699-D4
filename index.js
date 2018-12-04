@@ -50,10 +50,20 @@ function updateSim(data) {
 function updateStatsHTML() {
   $("#btcsent").html(`${totalBtcSent} BTC`);
   $("#largestbtcsent").html(
-    `${largestTransaction} BTC (${largestTransactionId})`
+    `${largestTransaction} BTC (<a href="https://chain.so/tx/BTC/${largestTransactionId}">...${
+      largestTransactionId.substring(
+        largestTransactionId.length - 8,
+        largestTransactionId.length
+      )
+    }</a>)`
   );
   $("#smallestbtcsent").html(
-    `${smallestTransaction} BTC (${smallestTransactionId})`
+    `${smallestTransaction} BTC (<a href="https://chain.so/tx/BTC/${smallestTransactionId}">...${
+      smallestTransactionId.substring(
+        smallestTransactionId.length - 8,
+        smallestTransactionId.length
+      )
+    }</a>)`
   );
   $("#avgbtcsent").html(
     `${totalBtcSent / (Date.now() / 1000 - startTime / 1000)} BTC`
@@ -102,7 +112,7 @@ function newTransaction(data) {
   const { txid, sent_value, time } = data.value;
   $("#transactions-list").prepend(
     `<tr id="${txid}">
-      <td>...${txid.substring(txid.length - 8, txid.length)}</td>
+      <th><a href="https://chain.so/tx/BTC/${txid}">...${txid.substring(txid.length - 8, txid.length)}</a></th>
       <td>${sent_value} BTC</td>
       <td>${time}</td>
     </tr>`
