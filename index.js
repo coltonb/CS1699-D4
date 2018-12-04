@@ -42,7 +42,7 @@ function updateStats(data) {
 function updateSim(data) {
   const { txid, sent_value } = data.value;
   const startX = Math.random() * 1000;
-  const newBody = Bodies.circle(startX, 0, Math.min(300, sent_value * 10));
+  const newBody = Bodies.circle(startX, 0, Math.max(5, Math.min(300, sent_value * 10)));
   transactions.push({ id: txid, value: sent_value, body: newBody });
   World.add(engine.world, [newBody]);
 }
@@ -155,7 +155,10 @@ window.addEventListener("load", function() {
     textCtx.clearRect(0, 0, 1200, 1000);
     transactions.forEach((transaction, index) => {
       const { id, value, body } = transaction;
-      if (value < 1 || body.position.x < 0 || body.position.x > 1000) transactions.splice(index, 1);
+      if (body.position.y > 600) {
+        World.remove(engine.world, body);
+        transactions.splice(index, 1);
+      }
       textCtx.font = `normal ${Math.min(30, Math.floor(value) * 10)}px Verdana`;
       textCtx.fillStyle = "#fff";
       textCtx.fillText(
